@@ -1,0 +1,8 @@
+google-genai
+fastapi
+uvicorn
+streamlit
+# Assuming nasiko and adk are provided as local wheels or specific hackathon packages. 
+# If not, use standard task orchestration patterns.
+pydantic
+requests
