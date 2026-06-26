@@ -1,7 +1,7 @@
 # 🛡️ LegacyGuard AI Orchestrator
 
 **Bridging 1995 Mainframes with Agentic AI**
-*Built for [Insert Hackathon Name] - Track B*
+*Built for Google Fragfest Hackathon - Track B*
 
 ## 🚨 The Core Problem
 **Decades of accumulated process debt in the enterprise sector.**
@@ -19,7 +19,7 @@ LegacyGuard AI is a multi-agent system that acts as a "Digital Archaeologist + S
 4. **Execution Orchestrator (Boss Agent):** Coordinates the Python flow, handles API failovers (503 traffic spikes) gracefully, and logs every step into an immutable Audit Trail.
 
 ## ⚙️ Architecture Flow
-*(Insert your Architecture Diagram / Mermaid chart here)*
+
 
 ## 🗄️ The Mock Legacy Infrastructure
 To prove our orchestration works, we simulate a legacy banking core using a mock VSAM hierarchical file structure. When queried, it does not return clean JSON; it returns an undocumented, 46-character fixed-width flat file (COBOL Copybook format). 
