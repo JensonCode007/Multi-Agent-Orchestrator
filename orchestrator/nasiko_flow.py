@@ -25,13 +25,22 @@ def call_agent_with_retry(prompt: str, system_instruction: str, model: str = 'ge
 def run_legacy_extraction_flow(customer_id: str):
     logs = []
     
-    # 1. Fetch Raw Legacy Data
-    logs.append(f"Initiating legacy fetch for {customer_id}...")
-    raw_legacy_string = "10045892KUMAR,R        198504120004589200A R4" 
-    logs.append(f"Mock Data Retrieved: {raw_legacy_string}")
+    # --- DYNAMIC MOCK LEGACY DB ---
+    mock_mainframe_db = {
+        "10045892": "10045892KUMAR,R        198504120004589200A R4", # Clean / Medium Risk
+        "10045893": "10045893SHARMA,P       199011050000005000C R9", # Closed / High Risk
+        "99999999": "99999999JUDGE,TEST     198001010009999900A R1"  # Custom one for the judges
+    }
+    
+    raw_legacy_string = mock_mainframe_db.get(customer_id)
+    
+    if not raw_legacy_string:
+        logs.append(f"⚠️ ERR: Record {customer_id} not found in Mainframe VSAM file.")
+        return {"modern_insight": "Record Not Found", "compliance_status": "Halted", "audit_trail": logs}
+    # ------------------------------
 
-    # 2. Scout Agent maps the data
-    logs.append("Deploying Scout Agent to map schema...")
+    logs.append(f"Initiating legacy fetch for {customer_id}...")
+    logs.append(f"Mock Data Retrieved: {raw_legacy_string}")
     scout_text = call_agent_with_retry(
         prompt=f"Analyze this raw string: {raw_legacy_string}",
         system_instruction=AgentSystemPrompts.SCOUT,
