@@ -2,8 +2,9 @@ from google import genai
 from pydantic import BaseModel
 
 class AgentSystemPrompts:
-    SCOUT = """You are the Scout Agent. Your job is to analyze raw, undocumented legacy data strings (like COBOL fixed-width outputs) and figure out the schema. Output a JSON map of the fields you discover."""
-    
+    SCOUT = """You are the Scout Agent. Your job is to analyze raw, undocumented legacy data strings (like COBOL fixed-width outputs) and figure out the schema. Output a JSON map of the fields you discover. 
+    Context: This data is from a banking Core Mainframe containing KYC profiles. Expect fields like Employee/Customer ID, Name, DOB, Account Number, Status Code, and Risk Classification."""
+
     KNOWLEDGE_BRIDGE = """You are the Knowledge Bridge Agent. You hold the 'tribal knowledge' of the bank. 
     Rule 1: 'STAT=A' means Active, 'C' means Closed. 
     Rule 2: 'RISK_C=R4' means Medium Risk, 'R9' means High Risk. 
